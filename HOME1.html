@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhay Reddy Kaduluri - Electronics Engineer</title>
+    <style>
+        :root {
+            --primary: #0066cc;
+            --secondary: #00aaff;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --accent: #ff6b6b;
+            --success: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark), #000);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .circuit-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(0, 102, 204, 0.1) 0%, transparent 80%);
+            z-index: 0;
+        }
+
+        .circuit-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            height: 1px;
+            width: 100%;
+            animation: circuit-animate 8s linear infinite;
+        }
+
+        @keyframes circuit-animate {
+            0% { opacity: 0; transform: translateX(-100%); }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; transform: translateX(100%); }
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--secondary);
+            position: relative;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--secondary);
+            animation: underline-pulse 2s infinite;
+        }
+
+        @keyframes underline-pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #ccc;
+            max-width: 500px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+            border: none;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.4);
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 5;
+        }
+
+        .device-showcase {
+            position: relative;
+            width: 450px;
+            height: 400px;
+        }
+
+        .device {
+            position: absolute;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            transition: all 0.5s ease;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            overflow: hidden;
+        }
+
+        .device-1 {
+            width: 180px;
+            height: 120px;
+            top: 50px;
+            left: 20px;
+            transform: rotate(-15deg);
+            z-index: 3;
+        }
+
+        .device-2 {
+            width: 200px;
+            height: 200px;
+            top: 100px;
+            left: 120px;
+            z-index: 5;
+        }
+
+        .device-3 {
+            width: 160px;
+            height: 100px;
+            top: 230px;
+            left: 50px;
+            transform: rotate(10deg);
+            z-index: 2;
+        }
+
+        .device-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .device::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.2), rgba(0, 170, 255, 0.1));
+            z-index: 2;
+        }
+
+        .led {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            z-index: 10;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; box-shadow: 0 0 10px var(--secondary); }
+            100% { opacity: 0.3; }
+        }
+
+        .section {
+            padding: 5rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--secondary), transparent);
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+        }
+
+        .about-text {
+            max-width: 600px;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-badge {
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 170, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-badge:hover::before {
+            left: 100%;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.2);
+        }
+
+        .project-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 102, 204, 0.3);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .project-desc {
+            color: #ccc;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background-color: rgba(0, 102, 204, 0.2);
+            padding: 0.3rem 0.7rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--light);
+        }
+
+        footer {
+            background: linear-gradient(to right, #1a1a1a, #151515);
+            padding: 4rem 5rem;
+            position: relative;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--secondary);
+        }
+
+        .footer-desc {
+            max-width: 300px;
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        .footer-links h3 {
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+
+        .links-list {
+            list-style: none;
+        }
+
+        .links-list li {
+            margin-bottom: 0.8rem;
+        }
+
+        .links-list a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .links-list a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            background-color: #2a2a2a;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .social-icon a {
+            color: var(--light);
+            font-size: 1.2rem;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            color: #777;
+            padding-top: 1.5rem;
+            border-top: 1px solid #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .hero-content {
+                margin-bottom: 3rem;
+            }
+
+            .device-showcase {
+                width: 100%;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+
+            .about-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 3rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .device-showcase {
+                height: 300px;
+            }
+
+            .device-1 {
+                width: 140px;
+                height: 100px;
+                top: 30px;
+                left: 20px;
+            }
+
+            .device-2 {
+                width: 160px;
+                height: 160px;
+                top: 80px;
+                left: 100px;
+            }
+
+            .device-3 {
+                width: 130px;
+                height: 80px;
+                top: 180px;
+                left: 40px;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="circuit-bg"></div>
+        <div class="circuit-line" style="top: 20%; animation-delay: 0s;"></div>
+        <div class="circuit-line" style="top: 40%; animation-delay: 2s;"></div>
+        <div class="circuit-line" style="top: 60%; animation-delay: 4s;"></div>
+        <div class="circuit-line" style="top: 80%; animation-delay: 6s;"></div>
+        
+        <nav class="navbar">
+            <a href="#" class="logo">ABHAY<span>REDDY</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Electronics & <span>Communication</span> Engineering Student</h1>
+            <p>Passionate about innovation in IoT, embedded systems, AI and cybersecurity.Eager to Apply Skills in Emerging Technologies and Semiconductor Innovations.</p>
+            <a href="#projects" class="cta-btn">View Projects</a>
+            <a href="#contact" class="cta-btn" style="background: transparent; border: 2px solid var(--secondary);">Contact Me</a>
+        </div>
+        <div class="hero-image">
+            <div class="device-showcase">
+                <div class="device device-1">
+                    <img src="C:\Users\kadul\Desktop\website\ESP32.jpeg" alt="ESP32" class="device-img">
+                    <div class="led" style="top: 10px; right: 10px;"></div>
+                </div>
+                <div class="device device-2">
+                    <img src="C:\Users\kadul\Desktop\website\Raspberry pi.jpg" alt="Raspberry Pi" class="device-img">
+                    <div class="led" style="top: 15px; left: 15px;"></div>
+                    <div class="led" style="bottom: 15px; right: 15px;"></div>
+                </div>
+                <div class="device device-3">
+                    <img src="C:\Users\kadul\Desktop\website\ARDUINO UNO.jpeg" alt="Arduino uno" class="device-img">
+                    <div class="led" style="top: 10px; left: 10px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p>I am an enthusiastic Electronics and Communication Engineering student at SRKR Engineering College with a passion for innovation in IoT, AI, and cybersecurity. I thrive on solving real-world problems, whether it's developing efficient wireless communication systems using ESP32 boards or exploring the latest advancements in artificial intelligence and network security.</p>
+                <p>My technical journey has taken me through various domains of electronics, from embedded systems to circuit design, and I'm constantly learning and adapting to new technologies in this rapidly evolving field.</p>
+                <div class="skills">
+                    <div class="skill-badge">C Programming</div>
+                    <div class="skill-badge">Python</div>
+                    <div class="skill-badge">C#</div>
+                    <div class="skill-badge">Arduino IDE</div>
+                    <div class="skill-badge">ESP32 Programming</div>
+                    <div class="skill-badge">IoT Development</div>
+                    <div class="skill-badge">Embedded Systems</div>
+                    <div class="skill-badge">Robotics</div>
+                </div>
+            </div>
+            <div class="education">
+                <h3 style="margin-bottom: 1.5rem; color: var(--secondary);">Education</h3>
+                <div style="background: #2a2a2a; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                    <h4>Bachelor of Technology</h4>
+                    <p>Electronics and Communication Engineering</p>
+                    <p style="color: #aaa;">SRKR Engineering College, Bhimavaram</p>
+                    <p style="color: var(--secondary);">09/2022 - 04/2026</p>
+                </div>
+                <div style="background: #2a2a2a; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                    <h4>Intermediate</h4>
+                    <p>MPC</p>
+                    <p style="color: #aaa;">Aditya Junior College, Kakinada</p>
+                    <p style="color: var(--secondary);">04/2020 - 07/2022</p>
+                </div>
+                <div style="background: #2a2a2a; padding: 1.5rem; border-radius: 10px;">
+                    <h4>School</h4>
+                    <p style="color: #aaa;">Little Woods School, Kakinada</p>
+                    <p style="color: var(--secondary);">04/2011 - 03/2020</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section" style="background-color: #151515;">
+        <h2 class="section-title">Projects</h2>
+        <div class="project-container">
+            <div class="project-card">
+                <img src="C:\Users\kadul\Desktop\website\ESP-NOW Project.jpg" alt="ESP-NOW Project" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">ESP-NOW Wireless Communication Protocol</h3>
+                    <p class="project-desc">Developed a robust wireless communication system using ESP-NOW protocol with ESP32 microcontrollers, enabling low-latency data transfer for IoT applications.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">ESP32</span>
+                        <span class="tech-tag">Arduino IDE</span>
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">IoT</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Abhayreddykaduluri/ESP-NOW" class="project-link"><i class="fas fa-code"></i> View Code</a>
+                        <a href="#" class="project-link"><i class="fas fa-link"></i> Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="C:\Users\kadul\Desktop\website\Password Generator.jpg" alt="Password Generator" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">Secure Password Generator using Cybersecurity</h3>
+                    <p class="project-desc">Created a secure password generation tool implementing modern cryptographic principles and entropy sources to generate highly secure, randomized passwords.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Cryptography</span>
+                        <span class="tech-tag">Security</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fas fa-code"></i> View Code</a>
+                        <a href="#" class="project-link"><i class="fas fa-link"></i> Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="C:\Users\kadul\Desktop\website\AI Image Classification.jpg" alt="AI Image Classification" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">AI Image Classification System</h3>
+                    <p class="project-desc">Developed an image classification model using YOLOv8 and CNNs for object detection and image analysis, part of my AI internship experience.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">YOLOv8</span>
+                        <span class="tech-tag">CNN</span>
+                        <span class="tech-tag">AI</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fas fa-code"></i> View Code</a>
+                        <a href="#" class="project-link"><i class="fas fa-link"></i> Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="C:\Users\kadul\Desktop\website\Arduino Bluetooth Controlled Car.png" alt="Bluetooth Controlled Car" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">Arduino Bluetooth Controlled Car</h3>
+                    <p class="project-desc">The Arduino Bluetooth Controlled Car is a wireless robot operated via a smartphone using a Bluetooth module and Arduino. It controls DC motors via an L298N motor driver, allowing movement in all directions.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Arduino UNO</span>
+                        <span class="tech-tag">Arduino IDE</span>
+                        <span class="tech-tag">Arduino-based C++</span>
+                        <span class="tech-tag">IoT</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Abhayreddykaduluri/arduino-bluetooth-controlled-car-code" class="project-link"><i class="fas fa-code"></i> View Code</a>
+                        <a href="#" class="project-link"><i class="fas fa-link"></i> Details</a>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <section id="resume" class="section">
+        <h2 class="section-title">Resume</h2>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <p style="max-width: 600px; margin: 0 auto; margin-bottom: 2rem;">My academic journey and professional experiences have equipped me with a diverse skill set in electronics, communication systems, and software development.</p>
+            <a href="C:\Users\kadul\Desktop\website\Abhay (Resume).pdf" class="cta-btn" style="margin-right: 0;"><i class="fas fa-download"></i> Download Resume</a>
+        </div>
+        <div style="background: #1a1a1a; border-radius: 10px; padding: 2rem; max-width: 800px; margin: 0 auto;">
+            <div style="margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 1.5rem;">
+                <h3 style="margin-bottom: 1rem; color: var(--secondary);">Work Experience</h3>
+                <h4>Intern - Artificial Intelligence</h4>
+                <p style="color: #aaa;">Artificial Intelligence Medical and Engineering Researchers Society</p>
+                <p style="color: var(--secondary); margin-bottom: 1rem;">06/2024 - 08/2024</p>
+                <ul style="list-style-position: inside; color: #ccc; line-height: 1.6;">
+                    <li>Developed AI Models: Created and trained machine learning models for image classification, object detection, and medical image analysis using advanced algorithms like YOLOv8 and CNNs.</li>
+                    <li>Built Conversational AI Systems: Designed and implemented chatbots with Open AI models and Google Dialog flow for real-world applications, including Telegram bots for weather updates and text-to-image conversion.</li>
+                    <li>Innovated in Computer Vision: Worked on advanced computer vision tasks such as human pose estimation, gesture recognition, and facial landmark detection using Media pipe and OpenCV!</li>
+                </ul>
+            </div>
+            <div style="margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 1.5rem;">
+                <h3 style="margin-bottom: 1rem; color: var(--secondary);">Skills</h3>
+                <div class="skills">
+                    <div class="skill-badge">C Programming</div>
+                    <div class="skill-badge">Python</div>
+                    <div class="skill-badge">C#</div>
+                    <div class="skill-badge">Arduino IDE</div>
+                    <div class="skill-badge">ESP32 Programming</div>
+                    <div class="skill-badge">IoT Development</div>
+                    <div class="skill-badge">Embedded Systems</div>
+                    <div class="skill-badge">Robotics</div>
+                    <div class="skill-badge">Circuit Design</div>
+                    <div class="skill-badge">PCB Layout</div>
+                </div>
+            </div>
+            <div>
+                <h3 style="margin-bottom: 1rem; color: var(--secondary);">Certifications</h3>
+                <ul style="list-style-position: inside; color: #ccc; line-height: 1.6;">
+                    <li>Python</li>
+                    <li>C#</li>
+                    <li>Web Development</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section" style="background-color: #151515;">
+        <h2 class="section-title">Contact Me</h2>
+        <div style="max-width: 800px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+            <div style="flex: 1; min-width: 300px;">
+                <h3 style="margin-bottom: 1.5rem; color: var(--secondary);">Get In Touch</h3>
+                <p style="margin-bottom: 2rem; line-height: 1.6;">Have a project in mind or want to discuss collaboration opportunities? Feel free to reach out to me through any of the contacts below.</p>
+                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="width: 50px; height: 50px; background-color: rgba(0, 102, 204, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-envelope" style="color: var(--secondary); font-size: 1.2rem;"></i>
+                        </div>
+                        <div>
+                            <p style="font-weight: 500;">Email</p>
+                            <p style="color: #aaa;">abhaykaduluri@gmail.com</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="width: 50px; height: 50px; background-color: rgba(0, 102, 204, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-phone" style="color: var(--secondary); font-size: 1.2rem;"></i>
+                        </div>
+                        <div>
+                            <p style="font-weight: 500;">Phone</p>
+                            <p style="color: #aaa;">+91 8500274802</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="width: 50px; height: 50px; background-color: rgba(0, 102, 204, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-map-marker-alt" style="color: var(--secondary); font-size: 1.2rem;"></i>
+                        </div>
+                        <div>
+                            <p style="font-weight: 500;">Location</p>
+                            <p style="color: #aaa;">Andhra</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="width: 50px; height: 50px; background-color: rgba(0, 102, 204, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fab fa-linkedin" style="color: var(--secondary); font-size: 1.2rem;"></i>
+                        </div>
+                        <div>
+                            <p style="font-weight: 500;">LinkedIn</p>
+                            <p><a href="https://www.linkedin.com/in/abhay-reddy-kaduluri-304b9a1b6" target="_blank" style="color: var(--secondary); text-decoration: none;">linkedin.com/in/abhay-reddy-kaduluri-304b9a1b6</a></p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="width: 50px; height: 50px; background-color: rgba(0, 102, 204, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fab fa-github" style="color: var(--secondary); font-size: 1.2rem;"></i>
+                        </div>
+                        <div>
+                            <p style="font-weight: 500;">GitHub</p>
+                            <p><a href="https://github.com/Abhayreddykaduluri?tab=repositories" target="_blank" style="color: var(--secondary); text-decoration: none;">github.com/Abhayreddykaduluri</a></p>
+                        </div>
+                    </div>
