@@ -116,6 +116,59 @@
             width: 100%;
         }
 
+        /* Mobile menu styles */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--light);
+            margin-bottom: 5px;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 15;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--secondary);
+        }
+
         .hero {
             min-height: 80vh;
             display: flex;
@@ -180,6 +233,7 @@
             border: none;
             cursor: pointer;
             margin-right: 1rem;
+            margin-bottom: 1rem;
         }
 
         .cta-btn:hover {
@@ -295,7 +349,7 @@
 
         .about-container {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
             gap: 4rem;
         }
@@ -325,6 +379,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            margin-bottom: 0.5rem;
         }
 
         .skill-badge::before {
@@ -408,6 +463,7 @@
         .project-links {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .project-link {
@@ -481,6 +537,7 @@
             display: flex;
             gap: 1rem;
             margin-top: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .social-icon {
@@ -512,16 +569,35 @@
             border-top: 1px solid #333;
         }
 
-        /* Responsive Design */
+        /* Improved Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section {
+                padding: 4rem 3rem;
+            }
+        }
+
         @media (max-width: 1024px) {
             .hero {
                 flex-direction: column;
-                padding: 2rem;
+                padding: 3rem 2rem;
                 text-align: center;
+                align-items: center;
             }
 
             .hero-content {
                 margin-bottom: 3rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .device-showcase {
@@ -532,17 +608,47 @@
 
             .about-container {
                 flex-direction: column;
-                gap: 2rem;
+                gap: 3rem;
+                align-items: center;
+            }
+            
+            .about-text {
+                text-align: center;
+            }
+            
+            .skills {
+                justify-content: center;
+            }
+            
+            footer {
+                padding: 3rem 2rem;
+            }
+            
+            .footer-content {
+                justify-content: center;
+                text-align: center;
             }
         }
 
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-toggle {
+                display: flex;
+            }
+            
             .section {
                 padding: 3rem 1.5rem;
             }
 
-            .nav-links {
-                display: none;
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
             }
 
             .device-showcase {
@@ -569,6 +675,95 @@
                 top: 180px;
                 left: 40px;
             }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .project-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .cta-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .device-showcase {
+                height: 250px;
+            }
+            
+            .device-1 {
+                width: 120px;
+                height: 80px;
+                top: 20px;
+                left: 10px;
+            }
+            
+            .device-2 {
+                width: 130px;
+                height: 130px;
+                top: 60px;
+                left: 80px;
+            }
+            
+            .device-3 {
+                width: 100px;
+                height: 70px;
+                top: 150px;
+                left: 30px;
+            }
+            
+            .section {
+                padding: 2rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            footer {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .device-showcase {
+                height: 220px;
+            }
+            
+            .device-1 {
+                width: 100px;
+                height: 70px;
+            }
+            
+            .device-2 {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .device-3 {
+                width: 90px;
+                height: 60px;
+            }
         }
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
@@ -590,15 +785,31 @@
                 <li><a href="#resume">Resume</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="mobile-toggle" id="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
+        
+        <div class="mobile-menu" id="mobile-menu">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </header>
 
     <section class="hero">
         <div class="hero-content">
             <h1>Electronics & <span>Communication</span> Engineering Student</h1>
-            <p>Passionate about innovation in IoT, embedded systems, AI and cybersecurity.Eager to Apply Skills in Emerging Technologies and Semiconductor Innovations.</p>
-            <a href="#projects" class="cta-btn">View Projects</a>
-            <a href="#contact" class="cta-btn" style="background: transparent; border: 2px solid var(--secondary);">Contact Me</a>
+            <p>Passionate about innovation in IoT, AI, cybersecurity, and embedded systems. Building tomorrow's technology, one circuit at a time.</p>
+            <div>
+                <a href="#projects" class="cta-btn">View Projects</a>
+                <a href="#contact" class="cta-btn" style="background: transparent; border: 2px solid var(--secondary);">Contact Me</a>
+            </div>
         </div>
         <div class="hero-image">
             <div class="device-showcase">
@@ -634,6 +845,8 @@
                     <div class="skill-badge">IoT Development</div>
                     <div class="skill-badge">Embedded Systems</div>
                     <div class="skill-badge">Robotics</div>
+                    <div class="skill-badge">Circuit Design</div>
+                    <div class="skill-badge">PCB Layout</div>
                 </div>
             </div>
             <div class="education">
@@ -675,7 +888,7 @@
                     </div>
                     <div class="project-links">
                         <a href="https://github.com/Abhayreddykaduluri/ESP-NOW" class="project-link"><i class="fas fa-code"></i> View Code</a>
-                        <a href="#" class="project-link"><i class="fas fa-link"></i> Details</a>
+                        <a href="https://drive.google.com/file/d/1KQziYe_UC8ywav3zAK1hni-B8SjxdsR-/view?usp=drive_link" class="project-link"><i class="fas fa-link"></i> Details</a>
                     </div>
                 </div>
             </div>
@@ -725,7 +938,7 @@
                     </div>
                     <div class="project-links">
                         <a href="https://github.com/Abhayreddykaduluri/arduino-bluetooth-controlled-car-code" class="project-link"><i class="fas fa-code"></i> View Code</a>
-                        <a href="#" class="project-link"><i class="fas fa-link"></i> Details</a>
+                        <a href="https://drive.google.com/file/d/1erGi6m6q64x4x_O_5Idq2RyN9p9XD2wO/view?usp=drive_link" class="project-link"><i class="fas fa-link"></i> Details</a>
                     </div>
                 </div>
             </div>
@@ -735,7 +948,7 @@
         <h2 class="section-title">Resume</h2>
         <div style="text-align: center; margin-bottom: 2rem;">
             <p style="max-width: 600px; margin: 0 auto; margin-bottom: 2rem;">My academic journey and professional experiences have equipped me with a diverse skill set in electronics, communication systems, and software development.</p>
-            <a href="#" class="cta-btn" style="margin-right: 0;"><i class="fas fa-download"></i> Download Resume</a>
+            <a href="https://drive.google.com/file/d/1KQziYe_UC8ywav3zAK1hni-B8SjxdsR-/view?usp=sharing" class="cta-btn" style="margin-right: 0;"><i class="fas fa-download"></i> Download Resume</a>
         </div>
         <div style="background: #1a1a1a; border-radius: 10px; padding: 2rem; max-width: 800px; margin: 0 auto;">
             <div style="margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 1.5rem;">
