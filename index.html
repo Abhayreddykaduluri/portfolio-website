@@ -134,6 +134,18 @@
             transition: all 0.3s ease;
         }
 
+        .mobile-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
         .mobile-menu {
             display: none;
             position: fixed;
@@ -778,30 +790,54 @@
         <div class="circuit-line" style="top: 80%; animation-delay: 6s;"></div>
         
         <nav class="navbar">
-            <a href="#" class="logo">ABHAY<span>REDDY</span></a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#resume">Resume</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="mobile-toggle" id="mobile-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-        
-        <div class="mobile-menu" id="mobile-menu">
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#resume">Resume</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
+    <a href="#" class="logo">ABHAY<span>REDDY</span></a>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#boards">Boards</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="mobile-toggle" id="mobile-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#boards">Boards</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</div>
     </header>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileToggle = document.getElementById("mobile-toggle");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            mobileToggle.addEventListener("click", function () {
+                mobileMenu.style.display = mobileMenu.style.display === "flex" ? "none" : "flex";
+                mobileToggle.classList.toggle("active");
+            });
+
+            // Close the menu when a link is clicked
+            document.querySelectorAll(".mobile-menu a").forEach(link => {
+                link.addEventListener("click", function () {
+                    mobileMenu.style.display = "none";
+                    mobileToggle.classList.remove("active");
+                });
+            });
+        });
+    </script>
+</body>
+</html>
     <section class="hero">
         <div class="hero-content">
             <h1>Electronics & <span>Communication</span> Engineering Student</h1>
@@ -836,7 +872,7 @@
             <div class="about-text">
                 <p>I am an enthusiastic Electronics and Communication Engineering student at SRKR Engineering College with a passion for innovation in IoT, AI, and cybersecurity. I thrive on solving real-world problems, whether it's developing efficient wireless communication systems using ESP32 boards or exploring the latest advancements in artificial intelligence and network security.</p>
                 <p>My technical journey has taken me through various domains of electronics, from embedded systems to circuit design, and I'm constantly learning and adapting to new technologies in this rapidly evolving field.</p>
-            <div class="skills">
+                <div class="skills">
                     <div class="skill-badge">C Programming</div>
                     <div class="skill-badge">Python</div>
                     <div class="skill-badge">C#</div>
@@ -845,8 +881,6 @@
                     <div class="skill-badge">IoT Development</div>
                     <div class="skill-badge">Embedded Systems</div>
                     <div class="skill-badge">Robotics</div>
-                    <div class="skill-badge">Circuit Design</div>
-                    <div class="skill-badge">PCB Layout</div>
                 </div>
             </div>
             <div class="education">
@@ -942,12 +976,67 @@
                 </div>
             </div>
     </section>
+    <section id="boards" class="section" style="background-color: #151515;">
+        <h2 class="section-title">Embedded Systems & IoT Development Boards</h2>
+        <div class="boards-container">
+    
+    <div class="card-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+
+        <!-- Raspberry Pi -->
+        <div class="project-card" style="background: #222; padding: 15px; border-radius: 10px; width: 300px; text-align: center;">
+            <img src="Raspberry pi.jpg" alt="Raspberry Pi" class="project-img" style="width: 100%; border-radius: 10px;">
+            <div class="project-content">
+                <h3 class="project-title" style="color: white;">Raspberry Pi</h3>
+                <p class="project-desc" style="color: #ccc;">Raspberry Pi is a small, affordable single-board computer that runs Linux, making it ideal for programming, automation, and IoT projects.</p>
+            </div>
+            <div class="project-links">
+                <a href="https://drive.google.com/file/d/1uou9GSyV2cmEkrJcySXsoC6bUh4KnGQU/view?usp=sharing" 
+                   class="project-link" style="color: cyan; text-decoration: none; font-weight: bold;">
+                   <i class="fas fa-link"></i> Details
+                </a>
+            </div>
+        </div>
+
+        <!-- ESP32 -->
+        <div class="project-card" style="background: #222; padding: 15px; border-radius: 10px; width: 300px; text-align: center;">
+            <img src="ESP32.jpeg" alt="ESP32" class="project-img" style="width: 100%; border-radius: 10px;">
+            <div class="project-content">
+                <h3 class="project-title" style="color: white;">ESP32</h3>
+                <p class="project-desc" style="color: #ccc;">ESP32 is a powerful Wi-Fi and Bluetooth-enabled microcontroller with dual-core processing, ideal for IoT and embedded applications.</p>
+            </div>
+            <div class="project-links">
+                <a href="https://drive.google.com/file/d/1Lgp5CUAyoMLw9MOkaNUWg92bU2MHfop9/view?usp=sharing" 
+                   class="project-link" style="color: cyan; text-decoration: none; font-weight: bold;">
+                   <i class="fas fa-link"></i> Details
+                </a>
+            </div>
+        </div>
+
+        <!-- Arduino Uno -->
+        <div class="project-card" style="background: #222; padding: 15px; border-radius: 10px; width: 300px; text-align: center;">
+            <img src="ARDUINO UNO.jpeg" alt="Arduino Uno" class="project-img" style="width: 100%; border-radius: 10px;">
+            <div class="project-content">
+                <h3 class="project-title" style="color: white;">Arduino Uno</h3>
+                <p class="project-desc" style="color: #ccc;">Arduino Uno is an easy-to-use microcontroller board based on the ATmega328P, featuring 14 digital I/O pins, 6 analog inputs, and USB programming support, making it ideal for beginners and prototyping.</p>
+            </div>
+            <div class="project-links">
+                <a href="https://drive.google.com/file/d/1s9QdtbHu5wncLYlnoLXmOp-4dlLDYnWP/view?usp=sharing" 
+                   class="project-link" style="color: cyan; text-decoration: none; font-weight: bold;">
+                   <i class="fas fa-link"></i> Details
+                </a>
+            </div>
+        </div>
+</section>
+
+
+
+
 
     <section id="resume" class="section">
         <h2 class="section-title">Resume</h2>
         <div style="text-align: center; margin-bottom: 2rem;">
             <p style="max-width: 600px; margin: 0 auto; margin-bottom: 2rem;">My academic journey and professional experiences have equipped me with a diverse skill set in electronics, communication systems, and software development.</p>
-            <a href="https://drive.google.com/file/d/15mzFusXKf2NhXT4KLDn4-6j0veaRxK0P/view?usp=sharing" class="cta-btn" style="margin-right: 0;"><i class="fas fa-download"></i> Download Resume</a>
+            <a href="https://drive.google.com/file/d/1KQziYe_UC8ywav3zAK1hni-B8SjxdsR-/view?usp=sharing" class="cta-btn" style="margin-right: 0;"><i class="fas fa-download"></i> Download Resume</a>
         </div>
         <div style="background: #1a1a1a; border-radius: 10px; padding: 2rem; max-width: 800px; margin: 0 auto;">
             <div style="margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 1.5rem;">
