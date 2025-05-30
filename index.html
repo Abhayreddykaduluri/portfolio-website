@@ -414,11 +414,49 @@
             box-shadow: 0 5px 15px rgba(0, 102, 204, 0.2);
         }
 
+        /* Project Tabs */
+        .project-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-tab {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            border: 1px solid var(--primary);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .project-tab.active {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .project-tab:hover:not(.active) {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
         .project-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 1rem;
+        }
+
+        /* Different transitions for hardware and software projects */
+        .project-card.hardware {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .project-card.software {
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease;
         }
 
         .project-card {
@@ -426,13 +464,17 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
         }
 
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 102, 204, 0.3);
+        .project-card.hardware:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0, 102, 204, 0.4);
+        }
+
+        .project-card.software:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 170, 255, 0.3);
         }
 
         .project-img {
@@ -489,6 +531,126 @@
 
         .project-link:hover {
             color: var(--light);
+        }
+
+        /* Enhanced Certificates Section */
+        .certificate-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .certificate-card {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .certificate-card:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .certificate-card:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .certificate-img-container {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .certificate-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .certificate-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 102, 204, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .certificate-overlay i {
+            font-size: 3rem;
+            color: white;
+            transform: scale(0.8);
+            transition: transform 0.5s ease;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0, 102, 204, 0.4);
+        }
+
+        .certificate-card:hover .certificate-img {
+            transform: scale(1.1);
+            filter: brightness(0.7);
+        }
+
+        .certificate-card:hover .certificate-overlay {
+            opacity: 1;
+        }
+
+        .certificate-card:hover .certificate-overlay i {
+            transform: scale(1.2);
+        }
+
+        .certificate-content {
+            padding: 1.5rem;
+            transition: transform 0.5s ease;
+        }
+
+        .certificate-card:hover .certificate-content {
+            transform: translateY(-5px);
+        }
+
+        .certificate-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .certificate-issuer {
+            color: #aaa;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .certificate-date {
+            color: var(--secondary);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .certificate-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         footer {
@@ -692,7 +854,8 @@
                 font-size: 2rem;
             }
             
-            .project-container {
+            .project-container,
+            .certificate-container {
                 grid-template-columns: 1fr;
             }
         }
@@ -790,29 +953,31 @@
         <div class="circuit-line" style="top: 80%; animation-delay: 6s;"></div>
         
         <nav class="navbar">
-    <a href="#" class="logo">KADULURI <span>ABHAY </span>REDDY</a>
-    <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#resume">Resume</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="mobile-toggle" id="mobile-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-</nav>
+            <a href="#" class="logo">KADULURI <span>ABHAY </span>REDDY</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobile-menu">
-    <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#resume">Resume</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </header>
 
     <script>
@@ -832,10 +997,34 @@
                     mobileToggle.classList.remove("active");
                 });
             });
+
+            // Project tabs functionality
+            const tabs = document.querySelectorAll('.project-tab');
+            const allProjects = document.querySelectorAll('.project-card');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    const filter = tab.getAttribute('data-filter');
+                    
+                    // Show/hide projects based on filter
+                    allProjects.forEach(project => {
+                        if (filter === 'all' || project.classList.contains(filter)) {
+                            project.style.display = 'block';
+                        } else {
+                            project.style.display = 'none';
+                        }
+                    });
+                });
+            });
         });
     </script>
-</body>
-</html>
+
     <section class="hero">
         <div class="hero-content">
             <h1>Electronics & <span>Communication</span> Engineering Student</h1>
@@ -848,7 +1037,7 @@
         <div class="hero-image">
             <div class="device-showcase">
                 <div class="device device-1">
-                    <img src="ESP32.jpeg" alt="ESP32" class="device-img">
+                    <img src="ESP32.jpg" alt="ESP32" class="device-img">
                     <div class="led" style="top: 10px; right: 10px;"></div>
                 </div>
                 <div class="device device-2">
@@ -903,8 +1092,16 @@
 
     <section id="projects" class="section" style="background-color: #151515;">
         <h2 class="section-title">My Projects</h2>
+        
+        <!-- Project Tabs -->
+        <div class="project-tabs">
+            <div class="project-tab active" data-filter="all">All Projects</div>
+            <div class="project-tab" data-filter="hardware">Hardware</div>
+            <div class="project-tab" data-filter="software">Software</div>
+        </div>
+        
         <div class="project-container">
-            <div class="project-card">
+            <div class="project-card hardware">
                 <img src="ESP-NOW Project.jpg" alt="ESP-NOW Project" class="project-img">
                 <div class="project-content">
                     <h3 class="project-title">ESP-NOW Wireless Communication Protocol</h3>
@@ -921,7 +1118,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card software">
                 <img src="Password Generator.jpg" alt="Password Generator" class="project-img">
                 <div class="project-content">
                     <h3 class="project-title">Secure Password Generator using Cybersecurity</h3>
@@ -937,7 +1134,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card software">
                 <img src="AI Image Classification.jpg" alt="AI Image Classification" class="project-img">
                 <div class="project-content">
                     <h3 class="project-title">Object detection using Yolo v8</h3>
@@ -953,7 +1150,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card hardware">
                 <img src="Arduino Bluetooth Controlled Car.png" alt="Bluetooth Controlled Car" class="project-img">
                 <div class="project-content">
                     <h3 class="project-title">Arduino Bluetooth Controlled Car</h3>
@@ -969,7 +1166,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card software">
                 <img src="Talking Robot.webp" alt="Talking Robot" class="project-img">
                 <div class="project-content">
                     <h3 class="project-title">Talking Robot</h3>
@@ -985,7 +1182,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card software">
                 <img src="Object Tracking.webp" alt="Object Tracking" class="project-img">
                 <div class="project-content">
                     <h3 class="project-title">Object Tracking</h3>
@@ -1000,29 +1197,45 @@
                         <a href="https://www.linkedin.com/posts/abhay-reddy-kaduluri-304b9a1b6_aimers-aimersociety-apsche-activity-7216301777640452096-dVV3?utm_source=share&utm_medium=member_desktop&rcm=ACoAADJdgjQBu08LPs276jA9c_U2xn-O30U4Kqc" class="project-link"><i class="fas fa-link"></i> Details</a>
                     </div>
                 </div>
-            </div>      
-    </section>
-    <section id="resume" class="section">
-    <h2 class="section-title">Resume</h2>
-    <div style="text-align: center; margin-bottom: 2rem;">
-        <p style="max-width: 600px; margin: 0 auto; margin-bottom: 2rem;">My academic journey and professional experiences have equipped me with a diverse skill set in electronics, communication systems, and software development.</p>
-        
-        <!-- Resume Preview Container - Always Visible with Enhanced Border -->
-        <div class="resume-container" style="max-width: 800px; margin: 0 auto; margin-bottom: 2rem; border: 2px solid #3273dc; box-shadow: 0 4px 8px rgba(0,0,0,0.15); border-radius: 6px; overflow: hidden;">
-            <div class="resume-preview-header" style="background-color: #3273dc; padding: 15px; border-bottom: 1px solid #2861b9; color: white;">
-                <h3 style="margin: 0;">Resume Preview</h3>
             </div>
-            
-            <div id="resume-preview" style="padding: 20px;">
-                <!-- Google Drive embedded preview with updated URL -->
-                <iframe src="https://drive.google.com/file/d/15mzFusXKf2NhXT4KLDn4-6j0veaRxK0P/preview" 
-                        width="100%" height="400px" style="border: 1px solid #ddd; border-radius: 4px;"></iframe>
+            <div class="project-card software">
+                <img src="Personal Portfolio Website.png" alt="Personal Portfolio Website" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">Personal Portfolio Website</h3>
+                    <p class="project-desc">Developed a personal portfolio website to showcase my IoT, AI, and embedded systems projects.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://abhayreddykaduluri.github.io/portfolio-website/" class="project-link"><i class="fas fa-link"></i> Details</a>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <a href="Abhay (Resume).pdf" class="cta-btn" style="margin-right: 0;"><i class="fas fa-download"></i> Download Resume</a>
-    </div>
-</section>
+    </section>
+
+    <section id="resume" class="section">
+        <h2 class="section-title">Resume</h2>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <p style="max-width: 600px; margin: 0 auto; margin-bottom: 2rem;">My academic journey and professional experiences have equipped me with a diverse skill set in electronics, communication systems, and software development.</p>
+            
+            <!-- Resume Preview Container - Always Visible with Enhanced Border -->
+            <div class="resume-container" style="max-width: 800px; margin: 0 auto; margin-bottom: 2rem; border: 2px solid #3273dc; box-shadow: 0 4px 8px rgba(0,0,0,0.15); border-radius: 6px; overflow: hidden;">
+                <div class="resume-preview-header" style="background-color: #3273dc; padding: 15px; border-bottom: 1px solid #2861b9; color: white;">
+                    <h3 style="margin: 0;">Resume Preview</h3>
+                </div>
+                
+                <div id="resume-preview" style="padding: 20px;">
+                    <!-- Google Drive embedded preview with updated URL -->
+                    <iframe src="https://drive.google.com/file/d/15mzFusXKf2NhXT4KLDn4-6j0veaRxK0P/preview" 
+                            width="100%" height="400px" style="border: 1px solid #ddd; border-radius: 4px;"></iframe>
+                </div>
+            </div>
+            
+            <a href="Abhay (Resume).pdf" class="cta-btn" style="margin-right: 0;"><i class="fas fa-download"></i> Download Resume</a>
+        </div>
         <div style="background: #1a1a1a; border-radius: 10px; padding: 2rem; max-width: 800px; margin: 0 auto;">
             <div style="margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 1.5rem;">
                 <h3 style="margin-bottom: 1rem; color: var(--secondary);">Work Experience</h3>
@@ -1051,61 +1264,40 @@
                 <h3 style="margin-bottom: 1rem; color: var(--secondary);">Certifications</h3>
                 <ul style="list-style-position: inside; color: #ccc; line-height: 1.6;">
                     <li>Python</li>
-                    <li>C#</li>
+                    <li>C</li>
                     <li>Web Development</li>
                 </ul>
             </div>
         </div>
     </section>
-
     <section id="contact" class="section" style="background-color: #151515;">
         <h2 class="section-title">Contact Me</h2>
-        <div style="max-width: 800px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
-            <div style="flex: 1; min-width: 300px;">
-                <h3 style="margin-bottom: 1.5rem; color: var(--secondary);">Get In Touch</h3>
-                <p style="margin-bottom: 2rem; line-height: 1.6;">Have a project in mind or want to discuss collaboration opportunities? Feel free to reach out to me through any of the contacts below.</p>
-                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <div style="width: 50px; height: 50px; background-color: rgba(0, 102, 204, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-envelope" style="color: var(--secondary); font-size: 1.2rem;"></i>
-                        </div>
-                        <div>
-                            <p style="font-weight: 500;">Email</p>
-                            <p style="color: #aaa;">abhaykaduluri@gmail.com</p>
-                        </div>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <div style="width: 50px; height: 50px; background-color: rgba(0, 102, 204, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-phone" style="color: var(--secondary); font-size: 1.2rem;"></i>
-                        </div>
-                        <div>
-                            <p style="font-weight: 500;">Phone</p>
-                            <p style="color: #aaa;"></p>
-                        </div>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <div style="width: 50px; height: 50px; background-color: rgba(0, 102, 204, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-map-marker-alt" style="color: var(--secondary); font-size: 1.2rem;"></i>
-                        </div>
-                        <div>
-                            <p style="font-weight: 500;">Location</p>
-                            <p style="color: #aaa;">Andhra</p>
-                        </div>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <div style="width: 50px; height: 50px; background-color: rgba(0, 102, 204, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fab fa-linkedin" style="color: var(--secondary); font-size: 1.2rem;"></i>
-                        </div>
-                        <div>
-                            <p style="font-weight: 500;">LinkedIn</p>
-                            <p><a href="https://www.linkedin.com/in/abhay-reddy-kaduluri-304b9a1b6" target="_blank" style="color: var(--secondary); text-decoration: none;">linkedin.com/in/abhay-reddy-kaduluri-304b9a1b6</a></p>
-                        </div>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <div style="width: 50px; height: 50px; background-color: rgba(0, 102, 204, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fab fa-github" style="color: var(--secondary); font-size: 1.2rem;"></i>
-                        </div>
-                        <div>
-                            <p style="font-weight: 500;">GitHub</p>
-                            <p><a href="https://github.com/Abhayreddykaduluri?tab=repositories" target="_blank" style="color: var(--secondary); text-decoration: none;">github.com/Abhayreddykaduluri</a></p>
-                        </div>
-                    </div>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h3 style="margin-bottom: 1.5rem; color: var(--secondary);">Get In Touch</h3>
+            <p style="margin-bottom: 2rem; line-height: 1.6;">Have a project in mind or want to discuss collaboration opportunities? Feel free to reach out to me.</p>
+            
+            <a href="mailto:abhaykaduluri@gmail.com" class="cta-btn" style="margin: 0 auto; display: inline-flex; align-items: center; gap: 0.5rem;">
+                <i class="fas fa-envelope"></i> Mail Me
+            </a>
+            
+            <div class="social-links" style="justify-content: center; margin-top: 3rem;">
+                <div class="social-icon">
+                    <a href="https://www.linkedin.com/in/abhay-reddy-kaduluri-304b9a1b6" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="social-icon">
+                    <a href="https://github.com/Abhayreddykaduluri" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="social-icon">
+                    <a href="tel:+918500274802"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+        <div class="copyright">
+            &copy; 2025 Abhay Reddy Kaduluri. All Rights Reserved.
+        </div>
+    </footer>
+</body>
+</html>
